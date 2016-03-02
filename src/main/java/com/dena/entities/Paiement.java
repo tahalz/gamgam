@@ -41,6 +41,9 @@ public class Paiement implements Serializable {
 	@JoinColumn(name="CODE_ABONNEMENT")	
 	private Abonnement abonnement;
 	
+	@Column(name="datePaiement", nullable=true)	
+	@Temporal(TemporalType.DATE)
+	private java.util.Date datePaiement ;
 	public long getIdPaiment() {
 		return idPaiment;
 	}
@@ -89,6 +92,14 @@ public class Paiement implements Serializable {
 
 	public String toString() {
 		return String.valueOf(getIdPaiment());
+	}
+
+	public java.util.Date getDatePaiement() {
+		return datePaiement;
+	}
+
+	public void setDatePaiement(java.util.Date datePaiement) {
+		this.datePaiement = datePaiement;
 	}
 	
 }
