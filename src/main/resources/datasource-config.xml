@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:security="http://www.springframework.org/schema/security" 
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security.xsd
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/data/jpa 
+	http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- Scans within the base package of the application for @Components to 
+		configure as beans -->
+		
+	<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:application.properties" />
+	</bean>
+	
+	<security:http use-expressions="false">
+		<security:intercept-url pattern="/rest/security/home/**" access="ROLE_ADMIN, ROLE_USER"/>
+		<security:form-login 
+		
+		login-page="/rest/security/login"
+		username-parameter="username"
+		password-parameter="password"
+		default-target-url="/rest/security/login"
+		always-use-default-target="true"
+		authentication-failure-url="/rest/security/error"
+		login-processing-url="/j_spring_security_check"/>
+		<security:logout 
+		logout-success-url="/rest/security/login"
+		logout-url="/j_spring_security_logout"
+		/>
+		<security:csrf disabled="true"/>
+	</security:http>
+	
+	
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="springDaoAuthentication"/>
+	</security:authentication-manager>
+	
+	
+	<bean id="springDaoAuthentication" class="com.dislog.newsales.filters.SpringSecurityDaoAuthentication">
+		<property name="dataSource" ref="ds"></property>
+		<property name="enableAuthorities" value="true"></property>
+		<property name="enableGroups" value="false"></property>
+	</bean>
+	
+	<bean id="dsConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="${db.driver}" />
+		<property name="jdbcUrl" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+	</bean>
+	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource"
+		depends-on="dsConfig">
+		<constructor-arg name="configuration" ref="dsConfig"></constructor-arg>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<bean id="hibernateJpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+
+		<property name="dataSource" ref="ds" />
+		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
+		<property name="packagesToScan" value="com.dislog.newsales.beans" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+			</props>
+		</property>
+	</bean>
+
+
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	
+
+
+
+	<tx:annotation-driven />
+
+
+	<jpa:repositories base-package="com.dislog.newsales.repositories"
+		entity-manager-factory-ref="entityManagerFactory" />
+	<tx:annotation-driven />
+
+</beans>
