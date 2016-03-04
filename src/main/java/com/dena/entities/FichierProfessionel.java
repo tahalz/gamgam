@@ -80,8 +80,12 @@ public class FichierProfessionel implements Serializable {
 		return cv;
 	}
 
+	@Override
 	public String toString() {
-		return String.valueOf(getIdFichier());
+		return "FichierProfessionel [idFichier=" + idFichier + ", nomFichier=" + nomFichier + ", emplacement="
+				+ emplacement + ", cv=" + cv + "]";
 	}
+
+	
 
 }

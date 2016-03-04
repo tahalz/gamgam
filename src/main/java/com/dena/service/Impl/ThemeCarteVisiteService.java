@@ -23,7 +23,7 @@ public class ThemeCarteVisiteService  implements IThemeCarteService{
 	@Override
 	public ThemeCarte save(ThemeCarte themeCarte ) {
 		// TODO Auto-generated method stub
-		return themeCarteRepository.save(role);
+		return themeCarteRepository.save(themeCarte);
 	}
 
 	@Override
@@ -59,6 +59,12 @@ public class ThemeCarteVisiteService  implements IThemeCarteService{
 	public  ThemeCarte update(long id, ThemeCarte themeCarte) {
 		ThemeCarte x=themeCarteRepository.findOne(id);
 		return themeCarteRepository.save(x);
+	}
+
+	@Override
+	public List<ThemeCarte> findByNomThemeCarte(String nomthemecarte) {
+		// TODO Auto-generated method stub
+		return themeCarteRepository.findByNomThemeCarte(nomthemecarte);
 	}
 	
 }

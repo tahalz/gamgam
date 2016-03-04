@@ -24,7 +24,7 @@ public class LettreMotivation implements Serializable {
 	}
 
 	public LettreMotivation(String titreLettre, String post, String typeCandidature, String typeContrat, String domaine,
-			String villePost, String column, String nomEntreprise, String statusEntreprise, String nomEmployeur) {
+			String villePost,  String nomEntreprise, String statusEntreprise, String nomEmployeur) {
 		super();
 		this.titreLettre = titreLettre;
 		this.post = post;
@@ -32,7 +32,7 @@ public class LettreMotivation implements Serializable {
 		this.typeContrat = typeContrat;
 		this.domaine = domaine;
 		this.villePost = villePost;
-		this.column = column;
+		
 		this.nomEntreprise = nomEntreprise;
 		this.statusEntreprise = statusEntreprise;
 		this.nomEmployeur = nomEmployeur;
@@ -61,8 +61,7 @@ public class LettreMotivation implements Serializable {
 	@Column(name = "villePost", nullable = true, length = 255)
 	private String villePost;
 
-	@Column(name = "`Column`", nullable = true, length = 255)
-	private String column;
+	
 
 	@Column(name = "nomEntreprise", nullable = true, length = 255)
 	private String nomEntreprise;
@@ -130,13 +129,7 @@ public class LettreMotivation implements Serializable {
 		return villePost;
 	}
 
-	public void setColumn(String value) {
-		this.column = value;
-	}
 
-	public String getColumn() {
-		return column;
-	}
 
 	public void setNomEntreprise(String value) {
 		this.nomEntreprise = value;
@@ -170,8 +163,14 @@ public class LettreMotivation implements Serializable {
 		return membre;
 	}
 
+	@Override
 	public String toString() {
-		return String.valueOf(getIdLettre());
+		return "LettreMotivation [idLettre=" + idLettre + ", titreLettre=" + titreLettre + ", post=" + post
+				+ ", typeCandidature=" + typeCandidature + ", typeContrat=" + typeContrat + ", domaine=" + domaine
+				+ ", villePost=" + villePost + ", nomEntreprise=" + nomEntreprise + ", statusEntreprise="
+				+ statusEntreprise + ", nomEmployeur=" + nomEmployeur + ", membre=" + membre + "]";
 	}
+
+
 
 }

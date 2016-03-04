@@ -113,8 +113,14 @@ public class Formation implements Serializable {
 		return langue;
 	}
 
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdFormation());
+		return "Formation [idFormation=" + idFormation + ", nomFormation=" + nomFormation + ", etablissement="
+				+ etablissement + ", description=" + description + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin
+				+ ", langue=" + langue + "]";
 	}
+
+	
 
 }

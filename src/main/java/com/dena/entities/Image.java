@@ -74,8 +74,12 @@ public class Image implements Serializable {
 		return potfolio;
 	}
 
+	@Override
 	public String toString() {
-		return String.valueOf(getIdImage());
+		return "Image [idImage=" + idImage + ", url=" + url + ", emplacement=" + emplacement + ", potfolio=" + potfolio
+				+ "]";
 	}
+
+	
 
 }

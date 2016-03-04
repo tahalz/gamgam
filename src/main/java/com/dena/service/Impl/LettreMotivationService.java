@@ -59,7 +59,6 @@ public class LettreMotivationService implements ILettreMotivationService{
 	@Override
 	public LettreMotivation update(long id,LettreMotivation lettreMotivation) {
 		LettreMotivation x=lettreMotivationRepository.findOne(id);
-		x.setColumn(lettreMotivation.getColumn());
 		x.setDomaine(lettreMotivation.getDomaine());
 		x.setNomEmployeur(lettreMotivation.getNomEmployeur());
 		x.setNomEntreprise(lettreMotivation.getNomEntreprise());
@@ -69,6 +68,30 @@ public class LettreMotivationService implements ILettreMotivationService{
 		x.setTypeContrat(lettreMotivation.getTypeContrat());
 		x.setVillePost(lettreMotivation.getVillePost());
 		return lettreMotivationRepository.save(x);
+	}
+
+	@Override
+	public List<LettreMotivation> findByDomaine(String domaine) {
+		// TODO Auto-generated method stub
+		return lettreMotivationRepository.findByDomaine(domaine);
+	}
+
+	@Override
+	public List<LettreMotivation> findByTypeContrat(String typecontrat) {
+		// TODO Auto-generated method stub
+		return lettreMotivationRepository.findByTypeContrat(typecontrat);
+	}
+
+	@Override
+	public List<LettreMotivation> findByPost(String post) {
+		// TODO Auto-generated method stub
+		return lettreMotivationRepository.findByPost(post);
+	}
+
+	@Override
+	public List<LettreMotivation> findByNomEntreprise(String nomentreprise) {
+		// TODO Auto-generated method stub
+		return lettreMotivationRepository.findByNomEntreprise(nomentreprise);
 	}
 	
 }

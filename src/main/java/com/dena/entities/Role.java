@@ -58,9 +58,12 @@ public class Role implements Serializable {
 	public Membre getMembre() {
 		return membre;
 	}
-	
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdRole());
+		return "Role [idRole=" + idRole + ", typeRole=" + typeRole + ", membre=" + membre + "]";
 	}
+	
+
 	
 }

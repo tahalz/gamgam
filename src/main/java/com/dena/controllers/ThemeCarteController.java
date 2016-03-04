@@ -19,7 +19,10 @@ public class ThemeCarteController{
 
 	@Autowired
 	private IThemeCarteService themeCarteService ;
-	
+	@RequestMapping(value="/find/nomthemecarte/{nomthemecarte}",method=RequestMethod.GET)
+	public List<ThemeCarte> findByNomThemeCarte(@PathVariable String nomthemecarte) {
+		return themeCarteService.findByNomThemeCarte(nomthemecarte);
+	}
 	@RequestMapping(method=RequestMethod.POST)
 	public ThemeCarte save(@RequestBody ThemeCarte themeCarte) {
 		return themeCarteService.save(themeCarte);
@@ -28,7 +31,7 @@ public class ThemeCarteController{
 	public List<ThemeCarte> findAll() {
 		return themeCarteService.findAll();
 	}
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/find/{id}",method=RequestMethod.GET)
 	public ThemeCarte findById(@PathVariable long id) {
 		return themeCarteService.findById(id);
 	}

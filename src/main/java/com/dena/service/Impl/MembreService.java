@@ -68,5 +68,19 @@ public class MembreService implements IMembreService{
 		x.setSexe(membre.getSexe());
 		return membreRepository.save(x);
 	}
+
+	@Override
+	public List<Membre> findBySexe(Boolean sexe) {
+		// TODO Auto-generated method stub
+		return membreRepository.findBySexe(sexe);
+	}
+
+
+
+	@Override
+	public List<Membre> findByCivilite(String civilite) {
+		// TODO Auto-generated method stub
+		return membreRepository.findByCivilite(civilite);
+	}
 	
 }

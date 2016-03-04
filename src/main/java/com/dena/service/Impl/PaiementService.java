@@ -1,16 +1,14 @@
 package com.dena.service.Impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dena.entities.Notification;
 import com.dena.entities.Paiement;
-import com.dena.repositories.INotificationRepository;
 import com.dena.repositories.IPaiementRepository;
-import com.dena.service.INotificationService;
 import com.dena.service.IPaiementService;
 
 
@@ -72,6 +70,18 @@ public class PaiementService implements IPaiementService{
 		x.setExpiration(paiement.getExpiration());
 		x.setNumeroCarte(paiement.getNumeroCarte());
 		return paiementRepository.save(x);
+	}
+
+	@Override
+	public List<Paiement> findByDatePaiement(Date datepaiement) {
+		// TODO Auto-generated method stub
+		return paiementRepository.findByDatePaiement(datepaiement);
+	}
+
+	@Override
+	public List<Paiement> findByExpiration(Date expiration) {
+		// TODO Auto-generated method stub
+		return paiementRepository.findByExpiration(expiration);
 	}
 	
 }

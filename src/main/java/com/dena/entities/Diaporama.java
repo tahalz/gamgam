@@ -62,8 +62,13 @@ public class Diaporama implements Serializable {
 		return portfolio;
 	}
 
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdDiaporama());
+		return "Diaporama [idDiaporama=" + idDiaporama + ", url=" + url + ", portfolio=" + portfolio + "]";
 	}
+
+	
 
 }

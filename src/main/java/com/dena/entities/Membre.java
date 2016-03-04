@@ -60,25 +60,31 @@ public class Membre implements Serializable {
 	private Boolean sexe;
 	
 	@OneToOne(mappedBy="membre", fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private Role role;
 	
 	@OneToOne(mappedBy="membre",  fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private Abonnement abonnement;
 	
 	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private Collection<CV> cvs ;
 	
-	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)		
+	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private Collection<LettreMotivation> lettreMotivations;
 	
 	@OneToOne(mappedBy="membre",  fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private CarteVisite carteVisite;
 	
 	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)	
 	@JsonIgnore
 	private Collection<Mail> mails;
 	
-	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)	
+	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<Notification> notifications ;
 	
 	public Collection<CV> getCvs() {
@@ -195,11 +201,18 @@ public class Membre implements Serializable {
 	public CarteVisite getCarteVisite() {
 		return carteVisite;
 	}
-	
-	
-	
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdMembre());
+		return "Membre [idMembre=" + idMembre + ", nomMembre=" + nomMembre + ", prenomMembre=" + prenomMembre
+				+ ", password=" + password + ", email=" + email + ", civilite=" + civilite + ", sexe=" + sexe
+				+ ", role=" + role + ", abonnement=" + abonnement + ", cvs=" + cvs + ", lettreMotivations="
+				+ lettreMotivations + ", carteVisite=" + carteVisite + ", mails=" + mails + ", notifications="
+				+ notifications + "]";
 	}
+	
+	
+	
+	
 	
 }

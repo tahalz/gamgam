@@ -60,5 +60,11 @@ public class AbonnementService implements IAbonnementService{
 		x.setTypeAbonnement(abonnement.getTypeAbonnement());
 		return abonnementRepository.save(x);
 	}
+
+	@Override
+	public List<Abonnement> findByTypeAbonnement(Integer typeabonnement) {
+		// TODO Auto-generated method stub
+		return abonnementRepository.findByTypeAbonnement(typeabonnement);
+	}
 	
 }

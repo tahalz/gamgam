@@ -17,6 +17,8 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="CarteVisite")
 public class CarteVisite implements Serializable {
@@ -53,7 +55,7 @@ public class CarteVisite implements Serializable {
 	private Membre membre;
 	
 	@OneToMany(mappedBy="carteVisite", fetch=FetchType.LAZY)	
-	
+	@JsonIgnore
 	private Collection<ThemeCarte> themeCartes;
 	
 	
@@ -108,8 +110,15 @@ public class CarteVisite implements Serializable {
 		this.themeCartes = themeCartes;
 	}
 
+
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdCarte());
+		return "CarteVisite [idCarte=" + idCarte + ", tel=" + tel + ", siteWeb=" + siteWeb + ", adresse=" + adresse
+				+ ", membre=" + membre + ", themeCartes=" + themeCartes + "]";
 	}
+
+	
 	
 }

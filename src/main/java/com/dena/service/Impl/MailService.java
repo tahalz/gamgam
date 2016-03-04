@@ -1,12 +1,12 @@
 package com.dena.service.Impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dena.entities.Experience;
 import com.dena.entities.Mail;
 import com.dena.repositories.IMailRepository;
 import com.dena.service.IMailService;
@@ -60,6 +60,24 @@ public class MailService implements IMailService{
 		x.setDateEnvoi(mail.getDateEnvoi());
 		x.setEmail(mail.getEmail());
 		return mailRepository.save(x);
+	}
+
+	@Override
+	public List<Mail> findByContenu(String contenu) {
+		
+		return mailRepository.findByContenu(contenu);
+	}
+
+	@Override
+	public List<Mail> findByDateEnvoi(Date dateenvoi) {
+		// TODO Auto-generated method stub
+		return mailRepository.findByDateEnvoi(dateenvoi);
+	}
+
+	@Override
+	public List<Mail> findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return mailRepository.findByEmail(email);
 	}
 	
 }

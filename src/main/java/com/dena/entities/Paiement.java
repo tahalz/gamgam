@@ -94,9 +94,7 @@ public class Paiement implements Serializable {
 		this.abonnement = abonnement;
 	}
 
-	public String toString() {
-		return String.valueOf(getIdPaiment());
-	}
+
 
 	public java.util.Date getDatePaiement() {
 		return datePaiement;
@@ -105,5 +103,14 @@ public class Paiement implements Serializable {
 	public void setDatePaiement(java.util.Date datePaiement) {
 		this.datePaiement = datePaiement;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Paiement [idPaiment=" + idPaiment + ", numeroCarte=" + numeroCarte + ", expiration=" + expiration
+				+ ", code=" + code + ", abonnement=" + abonnement + ", datePaiement=" + datePaiement + "]";
+	}
+	
 	
 }

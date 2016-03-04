@@ -28,7 +28,7 @@ public class NotificationController {
 	public List<Notification> findAll() {
 		return notificationService.findAll();
 	}
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/find/{id}",method=RequestMethod.GET)
 	public Notification findById(@PathVariable long id) {
 		return notificationService.findById(id);
 	}

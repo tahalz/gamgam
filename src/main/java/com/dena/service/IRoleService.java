@@ -10,4 +10,6 @@ public interface IRoleService {
 	public Role findById(long id) ;
 	public void delete(long id) ;
 	public Role update(long id,Role role);
+	public List<Role> findByTypeRole(String typerole);
+
 }

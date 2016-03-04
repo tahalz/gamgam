@@ -84,8 +84,11 @@ public class InformationPersonnel implements Serializable {
 		return langue;
 	}
 
+	@Override
 	public String toString() {
-		return String.valueOf(getIdInfoPerso());
+		return "InformationPersonnel [idInfoPerso=" + idInfoPerso + ", presentation=" + presentation + ", motCle="
+				+ motCle + ", titreCV=" + titreCV + ", langue=" + langue + "]";
 	}
 
+	
 }
