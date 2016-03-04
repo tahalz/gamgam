@@ -30,6 +30,11 @@ public class Langue implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idLangue;
 
+	public Langue(String typeLangue) {
+		super();
+		this.typeLangue = typeLangue;
+	}
+
 	@Column(name = "typeLangue", nullable = true, length = 255)
 	private String typeLangue;
 
@@ -66,9 +71,7 @@ public class Langue implements Serializable {
 		return idLangue;
 	}
 
-	public long getORMID() {
-		return getIdLangue();
-	}
+
 
 	public void setTypeLangue(String value) {
 		this.typeLangue = value;

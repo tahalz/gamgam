@@ -30,6 +30,11 @@ public class TypeCV implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idType;
 
+	public TypeCV(String nomType) {
+		super();
+		this.nomType = nomType;
+	}
+
 	@Column(name = "nomType", nullable = true, length = 255)
 	private String nomType;
 
@@ -45,9 +50,7 @@ public class TypeCV implements Serializable {
 		return idType;
 	}
 
-	public long getORMID() {
-		return getIdType();
-	}
+
 
 	public void setNomType(String value) {
 		this.nomType = value;

@@ -28,6 +28,11 @@ public class Diaporama implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idDiaporama;
 
+	public Diaporama(String url) {
+		super();
+		this.url = url;
+	}
+
 	@Column(name = "url", nullable = true, length = 255)
 	private String url;
 
@@ -39,9 +44,7 @@ public class Diaporama implements Serializable {
 		return idDiaporama;
 	}
 
-	public long getORMID() {
-		return getIdDiaporama();
-	}
+
 
 	public void setUrl(String value) {
 		this.url = value;

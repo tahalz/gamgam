@@ -30,6 +30,13 @@ public class Lien implements Serializable {
 	@Column(name="service", nullable=true, length=255)	
 	private String service;
 	
+	public Lien(String service, String url, Integer logo) {
+		super();
+		this.service = service;
+		this.url = url;
+		this.logo = logo;
+	}
+
 	@Column(name="url", nullable=true, length=255)	
 	private String url;
 	
@@ -44,9 +51,7 @@ public class Lien implements Serializable {
 		return idLiens;
 	}
 	
-	public long getORMID() {
-		return getIdLiens();
-	}
+	
 	
 	public void setService(String value) {
 		this.service = value;
@@ -63,10 +68,7 @@ public class Lien implements Serializable {
 	public String getUrl() {
 		return url;
 	}
-	
-	public void setLogo(int value) {
-		setLogo(new Integer(value));
-	}
+
 	
 	public void setLogo(Integer value) {
 		this.logo = value;

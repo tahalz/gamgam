@@ -30,6 +30,12 @@ public class Portfolio implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idPortfolio;
 
+	public Portfolio(String titrePortfolio, String description) {
+		super();
+		this.titrePortfolio = titrePortfolio;
+		this.description = description;
+	}
+
 	@Column(name = "titrePortfolio", nullable = true, length = 255)
 	private String titrePortfolio;
 
@@ -103,9 +109,7 @@ public class Portfolio implements Serializable {
 		return idPortfolio;
 	}
 
-	public long getORMID() {
-		return getIdPortfolio();
-	}
+
 
 	public void setTitrePortfolio(String value) {
 		this.titrePortfolio = value;

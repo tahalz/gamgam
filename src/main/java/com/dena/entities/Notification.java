@@ -30,6 +30,11 @@ public class Notification implements Serializable {
 	
 	private long idNotification;
 
+	public Notification(String contenuNotification) {
+		super();
+		this.contenuNotification = contenuNotification;
+	}
+
 	@Column(name = "contenuNotification", nullable = true, length = 255)
 	private String contenuNotification;
 
@@ -41,9 +46,6 @@ public class Notification implements Serializable {
 		return idNotification;
 	}
 
-	public long getORMID() {
-		return getIdNotification();
-	}
 
 	public void setContenuNotification(String value) {
 		this.contenuNotification = value;

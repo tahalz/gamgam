@@ -22,9 +22,13 @@ public class ThemeCarte implements Serializable {
 	public ThemeCarte() {
 	}
 	
-	@Column(name="TypeCVidType", nullable=false, length=19)	
-	private long typeCVidType;
 	
+	
+	public ThemeCarte(CarteVisite carteVisite) {
+		super();
+		this.carteVisite = carteVisite;
+	}
+
 	@ManyToOne	
 	@JoinColumn(name="CODE_CATEVISITE")	
 	private CarteVisite carteVisite;
@@ -34,22 +38,13 @@ public class ThemeCarte implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private long idThemeCarte;
 	
-	public void setTypeCVidType(long value) {
-		this.typeCVidType = value;
-	}
-	
-	public long getTypeCVidType() {
-		return typeCVidType;
-	}
+
 	
 	public long getIdThemeCarte() {
 		return idThemeCarte;
 	}
 	
-	public long getORMID() {
-		return getIdThemeCarte();
-	}
-	
+
 	public void setCarteVisite(CarteVisite value) {
 		this.carteVisite = value;
 	}

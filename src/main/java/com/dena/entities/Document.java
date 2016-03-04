@@ -20,6 +20,11 @@ import javax.persistence.*;
 public class Document implements Serializable {
 	
 
+	public Document(String emplacement) {
+		super();
+		this.emplacement = emplacement;
+	}
+
 	public Document() {
 	}
 
@@ -39,9 +44,7 @@ public class Document implements Serializable {
 		return idDocument;
 	}
 
-	public long getORMID() {
-		return getIdDocument();
-	}
+
 
 	public void setEmplacement(String value) {
 		this.emplacement = value;

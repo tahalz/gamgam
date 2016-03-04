@@ -32,6 +32,13 @@ public class CarteVisite implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private long idCarte;
 	
+	public CarteVisite(Integer tel, String siteWeb, String adresse) {
+		super();
+		this.tel = tel;
+		this.siteWeb = siteWeb;
+		this.adresse = adresse;
+	}
+
 	@Column(name="tel", nullable=true, length=10)	
 	private Integer tel;
 	
@@ -55,13 +62,8 @@ public class CarteVisite implements Serializable {
 		return idCarte;
 	}
 	
-	public long getORMID() {
-		return getIdCarte();
-	}
-	
-	public void setTel(int value) {
-		setTel(new Integer(value));
-	}
+
+
 	
 	public void setTel(Integer value) {
 		this.tel = value;

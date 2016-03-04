@@ -23,6 +23,12 @@ public class Image implements Serializable {
 	public Image() {
 	}
 
+	public Image(String url, String emplacement) {
+		super();
+		this.url = url;
+		this.emplacement = emplacement;
+	}
+
 	@Column(name = "idImage", nullable = false, unique = true, length = 19)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,9 +48,7 @@ public class Image implements Serializable {
 		return idImage;
 	}
 
-	public long getORMID() {
-		return getIdImage();
-	}
+
 
 	public void setUrl(String value) {
 		this.url = value;

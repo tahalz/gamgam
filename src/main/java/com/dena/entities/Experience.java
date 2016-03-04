@@ -13,6 +13,8 @@ package com.dena.entities;
  * License Type: Evaluation
  */
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -30,6 +32,20 @@ public class Experience implements Serializable {
 
 	@Column(name = "poste", nullable = true, length = 255)
 	private String poste;
+
+	public Experience(String poste, String entreprise, Integer logo, String typeContrat, Date dateDebut, Date dateFin,
+			String ville, String pays, String mission) {
+		super();
+		this.poste = poste;
+		this.entreprise = entreprise;
+		this.logo = logo;
+		this.typeContrat = typeContrat;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.ville = ville;
+		this.pays = pays;
+		this.mission = mission;
+	}
 
 	@Column(name = "entreprise", nullable = true, length = 255)
 	private String entreprise;
@@ -65,9 +81,7 @@ public class Experience implements Serializable {
 		return idExperience;
 	}
 
-	public long getORMID() {
-		return getIdExperience();
-	}
+	
 
 	public void setPoste(String value) {
 		this.poste = value;
@@ -85,9 +99,7 @@ public class Experience implements Serializable {
 		return entreprise;
 	}
 
-	public void setLogo(int value) {
-		setLogo(new Integer(value));
-	}
+
 
 	public void setLogo(Integer value) {
 		this.logo = value;

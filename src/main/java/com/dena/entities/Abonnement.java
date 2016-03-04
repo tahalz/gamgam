@@ -23,6 +23,11 @@ public class Abonnement implements Serializable {
 
 
 
+	public Abonnement(Integer typeAbonnement) {
+		super();
+		this.typeAbonnement = typeAbonnement;
+	}
+
 	public Abonnement() {
 	}
 	
@@ -48,13 +53,7 @@ public class Abonnement implements Serializable {
 		return idAbonnement;
 	}
 	
-	public long getORMID() {
-		return getIdAbonnement();
-	}
-	
-	public void setTypeAbonnement(int value) {
-		setTypeAbonnement(new Integer(value));
-	}
+
 	
 	public void setTypeAbonnement(Integer value) {
 		this.typeAbonnement = value;

@@ -28,14 +28,14 @@ public class FichierProfessionel implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idFichier;
 
+
 	@Column(name = "nomFichier", nullable = true, length = 255)
 	private String nomFichier;
 
 	@Column(name = "emplacement", nullable = true, length = 255)
 	private String emplacement;
 
-	@Column(name = "LangueidLangue", nullable = false, length = 19)
-	private long langueidLangue;
+	
 
 	@ManyToOne
 	@JoinColumn(name="CODE_CV")
@@ -65,12 +65,11 @@ public class FichierProfessionel implements Serializable {
 		return emplacement;
 	}
 
-	public void setLangueidLangue(long value) {
-		this.langueidLangue = value;
-	}
 
-	public long getLangueidLangue() {
-		return langueidLangue;
+	public FichierProfessionel(String nomFichier, String emplacement) {
+		super();
+		this.nomFichier = nomFichier;
+		this.emplacement = emplacement;
 	}
 
 	public void setCv(CV value) {

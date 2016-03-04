@@ -27,6 +27,12 @@ public class Loisir implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private long idLoisir;
 	
+	public Loisir(String typeLoisr, String detaille) {
+		super();
+		this.typeLoisr = typeLoisr;
+		this.detaille = detaille;
+	}
+
 	@Column(name="typeLoisr", nullable=true, length=255)	
 	private String typeLoisr;
 	
@@ -41,9 +47,7 @@ public class Loisir implements Serializable {
 		return idLoisir;
 	}
 	
-	public long getORMID() {
-		return getIdLoisir();
-	}
+
 	
 	public void setTypeLoisr(String value) {
 		this.typeLoisr = value;

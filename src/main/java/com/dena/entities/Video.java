@@ -23,6 +23,11 @@ public class Video implements Serializable {
 	public Video() {
 	}
 
+	public Video(String url) {
+		super();
+		this.url = url;
+	}
+
 	@Column(name = "idVideo", nullable = false, unique = true, length = 19)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,9 +44,7 @@ public class Video implements Serializable {
 		return idVideo;
 	}
 
-	public long getORMID() {
-		return getIdVideo();
-	}
+
 
 	public void setUrl(String value) {
 		this.url = value;

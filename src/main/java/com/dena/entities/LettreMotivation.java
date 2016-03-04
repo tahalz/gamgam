@@ -23,6 +23,21 @@ public class LettreMotivation implements Serializable {
 	public LettreMotivation() {
 	}
 
+	public LettreMotivation(String titreLettre, String post, String typeCandidature, String typeContrat, String domaine,
+			String villePost, String column, String nomEntreprise, String statusEntreprise, String nomEmployeur) {
+		super();
+		this.titreLettre = titreLettre;
+		this.post = post;
+		this.typeCandidature = typeCandidature;
+		this.typeContrat = typeContrat;
+		this.domaine = domaine;
+		this.villePost = villePost;
+		this.column = column;
+		this.nomEntreprise = nomEntreprise;
+		this.statusEntreprise = statusEntreprise;
+		this.nomEmployeur = nomEmployeur;
+	}
+
 	@Column(name = "idLettre", nullable = false, unique = true, length = 19)
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -66,9 +81,6 @@ public class LettreMotivation implements Serializable {
 		return idLettre;
 	}
 
-	public long getORMID() {
-		return getIdLettre();
-	}
 
 	public void setTitreLettre(String value) {
 		this.titreLettre = value;

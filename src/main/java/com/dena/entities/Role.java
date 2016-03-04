@@ -30,6 +30,11 @@ public class Role implements Serializable {
 	@Column(name="typeRole", nullable=true, length=255)	
 	private String typeRole;
 	
+	public Role(String typeRole) {
+		super();
+		this.typeRole = typeRole;
+	}
+
 	@OneToOne( fetch=FetchType.LAZY)	
 	@PrimaryKeyJoinColumn
 	private Membre membre;
@@ -37,11 +42,7 @@ public class Role implements Serializable {
 	public long getIdRole() {
 		return idRole;
 	}
-	
-	public long getORMID() {
-		return getIdRole();
-	}
-	
+
 	public void setTypeRole(String value) {
 		this.typeRole = value;
 	}
