@@ -49,7 +49,11 @@ public class Portfolio implements Serializable {
 	private Langue langue;
 
 	@OneToMany(mappedBy = "portfolio", fetch=FetchType.LAZY)
+<<<<<<< HEAD
     @JsonIgnore
+=======
+	@JsonIgnore
+>>>>>>> ba5d0ebef0f45be6581b34571663f40eb56d8ab0
 	private Collection<Video> videos;
 
 	public Collection<Video> getVideos() {
@@ -93,11 +97,19 @@ public class Portfolio implements Serializable {
 	}
 
 	@OneToMany(mappedBy = "portfolio", fetch=FetchType.LAZY)
+<<<<<<< HEAD
     @JsonIgnore
 	private Collection<Document> documents;
 
 	@OneToMany(mappedBy = "potfolio",fetch=FetchType.LAZY)
     @JsonIgnore
+=======
+	@JsonIgnore
+	private Collection<Document> documents;
+
+	@OneToMany(mappedBy = "potfolio",fetch=FetchType.LAZY)
+	@JsonIgnore
+>>>>>>> ba5d0ebef0f45be6581b34571663f40eb56d8ab0
 	private Collection<Image> images;
 
 	@OneToMany(mappedBy = "portfolio", fetch=FetchType.LAZY)
@@ -105,7 +117,11 @@ public class Portfolio implements Serializable {
 	private Collection<Audio> audios;
 
 	@OneToMany(mappedBy = "portfolio", fetch=FetchType.LAZY)
+<<<<<<< HEAD
     @JsonIgnore
+=======
+	@JsonIgnore
+>>>>>>> ba5d0ebef0f45be6581b34571663f40eb56d8ab0
 	private Collection<Diaporama> diaporamas;
 
 	public long getIdPortfolio() {
@@ -138,8 +154,13 @@ public class Portfolio implements Serializable {
 		return langue;
 	}
 
+	@Override
 	public String toString() {
-		return String.valueOf(getIdPortfolio());
+		return "Portfolio [idPortfolio=" + idPortfolio + ", titrePortfolio=" + titrePortfolio + ", description="
+				+ description + ", langue=" + langue + ", videos=" + videos + ", documents=" + documents + ", images="
+				+ images + ", audios=" + audios + ", diaporamas=" + diaporamas + "]";
 	}
+
+
 
 }

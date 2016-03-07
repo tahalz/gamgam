@@ -187,8 +187,17 @@ public class CV implements Serializable {
 		this.fichierProfessionel = fichierProfessionel;
 	}
 
+
+
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdCV());
+		return "CV [idCV=" + idCV + ", photo=" + photo + ", dateNaissance=" + dateNaissance + ", ville=" + ville
+				+ ", codePostal=" + codePostal + ", pays=" + pays + ", permis=" + permis + ", situationProfessionnel="
+				+ situationProfessionnel + ", membre=" + membre + ", situationFamilial=" + situationFamilial
+				+ ", langues=" + langues + ", fichierProfessionel=" + fichierProfessionel + "]";
 	}
 
+	
 }

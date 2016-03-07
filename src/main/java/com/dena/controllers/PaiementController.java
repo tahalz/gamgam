@@ -1,5 +1,6 @@
 package com.dena.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,14 @@ public class PaiementController {
 
 	@Autowired
 	private IPaiementService paiementService ;
-	
+	@RequestMapping(value="/find/datepaiement/{datepaiement}",method=RequestMethod.GET)
+	public List<Paiement> findByDatePaiement(@PathVariable Date datepaiement) {
+		return paiementService.findByDatePaiement(datepaiement);
+	}
+	@RequestMapping(value="/find/expiration/{expiration}",method=RequestMethod.GET)
+	public List<Paiement> findByExpiration(@PathVariable Date expiration) {
+		return paiementService.findByExpiration(expiration);
+	}
 	@RequestMapping(method=RequestMethod.POST)
 	public Paiement save(@RequestBody Paiement paiement) {
 		return paiementService.save(paiement);
@@ -28,7 +36,7 @@ public class PaiementController {
 	public List<Paiement> findAll() {
 		return paiementService.findAll();
 	}
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/find/{id}",method=RequestMethod.GET)
 	public Paiement findById(@PathVariable long id) {
 		return paiementService.findById(id);
 	}

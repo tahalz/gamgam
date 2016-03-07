@@ -86,9 +86,16 @@ public class Competence implements Serializable {
 	public Langue getLangue() {
 		return langue;
 	}
-	
+
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdCompetence());
+		return "Competence [idCompetence=" + idCompetence + ", typeCompetence=" + typeCompetence
+				+ ", domaineCompetence=" + domaineCompetence + ", description=" + description + ", langue=" + langue
+				+ "]";
 	}
+	
+	
 	
 }

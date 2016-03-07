@@ -1,5 +1,9 @@
 package com.dena.controllers;
+<<<<<<< HEAD
 
+=======
+import java.util.Date;
+>>>>>>> ba5d0ebef0f45be6581b34571663f40eb56d8ab0
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +19,20 @@ import com.dena.service.IMailService;
 @RestController
 @RequestMapping("/mail")
 public class MailController {
-
+	@RequestMapping(value="/find/dateenvoi/{dateenvoi}",method=RequestMethod.GET)
+	public List<Mail> findByDateEnvoi(@PathVariable Date dateenvoi) {
+		return mailService.findByDateEnvoi(dateenvoi);
+	}
+	@RequestMapping(value="/find/email/{email}",method=RequestMethod.GET)
+	public List<Mail> findByEmail(@PathVariable String email) {
+		return mailService.findByEmail(email);
+	}
 	@Autowired
 	private IMailService mailService ;
-	
+	@RequestMapping(value="/find/contenu/{contenu}",method=RequestMethod.GET)
+	public List<Mail> findByContenu(@PathVariable String contenu) {
+		return mailService.findByContenu(contenu);
+	}
 	@RequestMapping(method=RequestMethod.POST)
 	public Mail save(@RequestBody Mail mail) {
 		return mailService.save(mail);
@@ -27,7 +41,7 @@ public class MailController {
 	public List<Mail> findAll() {
 		return mailService.findAll();
 	}
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/find/{id}",method=RequestMethod.GET)
 	public Mail findById(@PathVariable long id) {
 		return mailService.findById(id);
 	}

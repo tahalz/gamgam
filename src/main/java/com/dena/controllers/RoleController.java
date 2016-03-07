@@ -18,7 +18,10 @@ public class RoleController {
 
 	@Autowired
 	private IRoleService roleService ;
-	
+	@RequestMapping(value="/find/typerole/{typerole}",method=RequestMethod.GET)
+	public List<Role> findByTypeRole(@PathVariable String typerole) {
+		return roleService.findByTypeRole(typerole);
+	}
 	@RequestMapping(method=RequestMethod.POST)
 	public Role save(@RequestBody Role role) {
 		return roleService.save(role);
@@ -27,7 +30,7 @@ public class RoleController {
 	public List<Role> findAll() {
 		return roleService.findAll();
 	}
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/find/{id}",method=RequestMethod.GET)
 	public Role findById(@PathVariable long id) {
 		return roleService.findById(id);
 	}

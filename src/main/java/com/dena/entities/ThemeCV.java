@@ -62,8 +62,10 @@ public class ThemeCV implements Serializable {
 		return typeCV;
 	}
 
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdTheme());
+		return "ThemeCV [typeCV=" + typeCV + ", idTheme=" + idTheme + ", nomTheme=" + nomTheme + "]";
 	}
 
 }

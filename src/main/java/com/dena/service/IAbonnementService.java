@@ -10,4 +10,5 @@ public interface IAbonnementService {
 	public Abonnement findById(long id) ;
 	public void delete(long id) ;
 	public Abonnement update(long id,Abonnement abonnement);
+	List<Abonnement> findByTypeAbonnement(Integer typeabonnement);
 }

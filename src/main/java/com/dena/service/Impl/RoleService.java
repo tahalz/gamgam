@@ -69,5 +69,11 @@ public class RoleService implements IRoleService{
 		x.setTypeRole(role.getTypeRole());
 		return roleRepository.save(x);
 	}
+
+	@Override
+	public List<Role> findByTypeRole(String typerole) {
+		// TODO Auto-generated method stub
+		return roleRepository.findByTypeRole(typerole);
+	}
 	
 }

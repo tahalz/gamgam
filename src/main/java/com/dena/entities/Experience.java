@@ -8,6 +8,7 @@ package com.dena.entities;
  * Modifying its content may cause the program not work, or your work may lost.
  */
 
+import java.io.File;
 /**
  * Licensee: 
  * License Type: Evaluation
@@ -33,7 +34,7 @@ public class Experience implements Serializable {
 	@Column(name = "poste", nullable = true, length = 255)
 	private String poste;
 
-	public Experience(String poste, String entreprise, Integer logo, String typeContrat, Date dateDebut, Date dateFin,
+	public Experience(String poste, String entreprise, File logo, String typeContrat, Date dateDebut, Date dateFin,
 			String ville, String pays, String mission) {
 		super();
 		this.poste = poste;
@@ -51,7 +52,7 @@ public class Experience implements Serializable {
 	private String entreprise;
 
 	@Column(name = "logo", nullable = true, length = 10)
-	private Integer logo;
+	private File logo;
 
 	@Column(name = "typeContrat", nullable = true, length = 255)
 	private String typeContrat;
@@ -101,11 +102,11 @@ public class Experience implements Serializable {
 
 
 
-	public void setLogo(Integer value) {
+	public void setLogo(File value) {
 		this.logo = value;
 	}
 
-	public Integer getLogo() {
+	public File getLogo() {
 		return logo;
 	}
 
@@ -165,8 +166,15 @@ public class Experience implements Serializable {
 		return langue;
 	}
 
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdExperience());
+		return "Experience [idExperience=" + idExperience + ", poste=" + poste + ", entreprise=" + entreprise
+				+ ", logo=" + logo + ", typeContrat=" + typeContrat + ", dateDebut=" + dateDebut + ", dateFin="
+				+ dateFin + ", ville=" + ville + ", pays=" + pays + ", mission=" + mission + ", langue=" + langue + "]";
 	}
+
+	
 
 }

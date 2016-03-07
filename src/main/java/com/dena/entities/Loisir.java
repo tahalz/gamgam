@@ -72,9 +72,15 @@ public class Loisir implements Serializable {
 	public Langue getLangue() {
 		return langue;
 	}
-	
+
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdLoisir());
+		return "Loisir [idLoisir=" + idLoisir + ", typeLoisr=" + typeLoisr + ", detaille=" + detaille + ", langue="
+				+ langue + "]";
 	}
+	
+
 	
 }

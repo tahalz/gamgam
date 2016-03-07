@@ -69,10 +69,15 @@ public class Langue implements Serializable {
 	private Collection<TypeCV> typeCVs;
 
 	@OneToMany(mappedBy = "langue", fetch=FetchType.LAZY)
+<<<<<<< HEAD
     @JsonIgnore
+=======
+	@JsonIgnore
+>>>>>>> ba5d0ebef0f45be6581b34571663f40eb56d8ab0
 	private Collection<Portfolio> portfolios;
 
 	@OneToOne(mappedBy = "langue",  fetch = FetchType.LAZY)
+	@JsonIgnore
 	private InformationPersonnel informationPersonnel;
 
 	public long getIdLangue() {
@@ -161,8 +166,16 @@ public class Langue implements Serializable {
 		return informationPersonnel;
 	}
 
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdLangue());
+		return "Langue [idLangue=" + idLangue + ", typeLangue=" + typeLangue + ", cv=" + cv + ", competences="
+				+ competences + ", formations=" + formations + ", loisirs=" + loisirs + ", experiences=" + experiences
+				+ ", liens=" + liens + ", typeCVs=" + typeCVs + ", portfolios=" + portfolios + ", informationPersonnel="
+				+ informationPersonnel + "]";
 	}
+
+	
 
 }

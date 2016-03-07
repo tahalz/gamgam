@@ -62,8 +62,11 @@ public class Document implements Serializable {
 		return portfolio;
 	}
 
+	@Override
 	public String toString() {
-		return String.valueOf(getIdDocument());
+		return "Document [idDocument=" + idDocument + ", emplacement=" + emplacement + ", portfolio=" + portfolio + "]";
 	}
+
+
 
 }

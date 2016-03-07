@@ -63,8 +63,12 @@ public class Notification implements Serializable {
 		return membre;
 	}
 
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdNotification());
+		return "Notification [idNotification=" + idNotification + ", contenuNotification=" + contenuNotification
+				+ ", membre=" + membre + "]";
 	}
 
+	
 }

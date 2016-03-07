@@ -63,6 +63,21 @@ public class CarteVisiteService implements ICarteVisiteService{
 		x.setTel(carteVisite.getTel());
 		return carteVisiteRepository.save(x);
 	}
+
+	
+
+
+	@Override
+	public List<CarteVisite> findBySiteWeb(String siteweb) {
+		// TODO Auto-generated method stub
+		return carteVisiteRepository.findBySiteWeb(siteweb);
+	}
+
+	@Override
+	public List<CarteVisite> findByTel(Integer tel) {
+		// TODO Auto-generated method stub
+		return carteVisiteRepository.findByTel(tel);
+	}
 	
 }
 

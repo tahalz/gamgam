@@ -62,8 +62,11 @@ public class Video implements Serializable {
 		return portfolio;
 	}
 
+	@Override
 	public String toString() {
-		return String.valueOf(getIdVideo());
+		return "Video [idVideo=" + idVideo + ", url=" + url + ", portfolio=" + portfolio + "]";
 	}
+
+	
 
 }

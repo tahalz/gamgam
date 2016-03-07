@@ -19,7 +19,15 @@ public class CarteVisiteController {
 
 	@Autowired
 	private ICarteVisiteService carteVisiteService ;
-	
+
+	@RequestMapping(value="/find/siteweb/{siteweb}",method=RequestMethod.GET)
+	public List<CarteVisite> findBySiteWeb(@PathVariable String siteweb) {
+		return carteVisiteService.findBySiteWeb(siteweb);
+	}
+	@RequestMapping(value="/find/tel/{tel}",method=RequestMethod.GET)
+	public List<CarteVisite> findByTel(@PathVariable Integer tel) {
+		return carteVisiteService.findByTel(tel);
+	}
 	@RequestMapping(method=RequestMethod.POST)
 	public CarteVisite save(@RequestBody CarteVisite carteVisite) {
 		return carteVisiteService.save(carteVisite);
@@ -28,7 +36,7 @@ public class CarteVisiteController {
 	public List<CarteVisite> findAll() {
 		return carteVisiteService.findAll();
 	}
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/find/{id}",method=RequestMethod.GET)
 	public CarteVisite findById(@PathVariable long id) {
 		return carteVisiteService.findById(id);
 	}

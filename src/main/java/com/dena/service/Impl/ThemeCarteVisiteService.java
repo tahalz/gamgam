@@ -60,5 +60,11 @@ public class ThemeCarteVisiteService  implements IThemeCarteService{
 		ThemeCarte x=themeCarteRepository.findOne(id);
 		return themeCarteRepository.save(x);
 	}
+
+	@Override
+	public List<ThemeCarte> findByNomThemeCarte(String nomthemecarte) {
+		// TODO Auto-generated method stub
+		return themeCarteRepository.findByNomThemeCarte(nomthemecarte);
+	}
 	
 }

@@ -74,9 +74,15 @@ public class Audio implements Serializable {
 	public Portfolio getPortfolio() {
 		return portfolio;
 	}
-	
+
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdAudio());
+		return "Audio [idAudio=" + idAudio + ", url=" + url + ", emplacement=" + emplacement + ", portfolio="
+				+ portfolio + "]";
 	}
+	
+	
 	
 }

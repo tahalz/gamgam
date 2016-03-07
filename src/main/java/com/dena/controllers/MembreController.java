@@ -18,7 +18,21 @@ public class  MembreController {
 
 	@Autowired
 	private IMembreService membreService ;
+	@RequestMapping(value="/find/sexe/{sexe}",method=RequestMethod.GET)
+	public List<Membre> findBySexe(@PathVariable Boolean sexe) {
+		return membreService.findBySexe(sexe);
+	}
 	
+	@RequestMapping(value="/find/civilite/{civilite}",method=RequestMethod.GET)
+	public List<Membre> findByCivilite(@PathVariable String civilite) {
+		return membreService.findByCivilite(civilite);
+	}
+	public IMembreService getMembreService() {
+		return membreService;
+	}
+	public void setMembreService(IMembreService membreService) {
+		this.membreService = membreService;
+	}
 	@RequestMapping(method=RequestMethod.POST)
 	public Membre save(@RequestBody Membre membre) {
 		return membreService.save(membre);
@@ -27,7 +41,7 @@ public class  MembreController {
 	public List<Membre> findAll() {
 		return membreService.findAll();
 	}
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/find/{id}",method=RequestMethod.GET)
 	public Membre findById(@PathVariable long id) {
 		return membreService.findById(id);
 	}

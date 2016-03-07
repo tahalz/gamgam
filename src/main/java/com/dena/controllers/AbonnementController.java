@@ -19,7 +19,10 @@ public class AbonnementController {
 
 	@Autowired
 	private IAbonnementService abonnementService ;
-	
+	@RequestMapping(value="/find/typeabonnement/{typeabonnement}",method=RequestMethod.GET)
+	public List<Abonnement> findByTypeAbonnement(@PathVariable Integer typeabonnement) {
+		return abonnementService.findByTypeAbonnement(typeabonnement);
+	}
 	@RequestMapping(method=RequestMethod.POST)
 	public Abonnement save(@RequestBody Abonnement abonnement) {
 		return abonnementService.save(abonnement);
@@ -28,7 +31,7 @@ public class AbonnementController {
 	public List<Abonnement> findAll() {
 		return abonnementService.findAll();
 	}
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/find/{id}",method=RequestMethod.GET)
 	public Abonnement findById(@PathVariable long id) {
 		return abonnementService.findById(id);
 	}

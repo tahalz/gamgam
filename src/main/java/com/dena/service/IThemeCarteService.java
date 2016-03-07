@@ -10,4 +10,5 @@ public interface IThemeCarteService {
 	public ThemeCarte findById(long id) ;
 	public void delete(long id) ;
 	public ThemeCarte update(long id,ThemeCarte themeCarte);
+	public List<ThemeCarte> findByNomThemeCarte(String nomthemecarte);
 }

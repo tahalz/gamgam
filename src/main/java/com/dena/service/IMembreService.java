@@ -10,4 +10,6 @@ public interface IMembreService {
 	public Membre findById(long id) ;
 	public void delete(long id) ;
 	public Membre update(long id,Membre membre);
+	public List<Membre> findBySexe(Boolean sexe);
+	public List<Membre> findByCivilite(String civilite);
 }

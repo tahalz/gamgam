@@ -45,7 +45,11 @@ public class TypeCV implements Serializable {
 	private Langue langue;
 
 	@OneToMany(mappedBy = "typeCV",fetch=FetchType.LAZY)
+<<<<<<< HEAD
     @JsonIgnore
+=======
+	@JsonIgnore
+>>>>>>> ba5d0ebef0f45be6581b34571663f40eb56d8ab0
 	private Collection<ThemeCV> themeCVs;
 
 	public long getIdType() {
@@ -78,8 +82,14 @@ public class TypeCV implements Serializable {
 		this.themeCVs = themeCVs;
 	}
 
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdType());
+		return "TypeCV [idType=" + idType + ", nomType=" + nomType + ", langue=" + langue + ", themeCVs=" + themeCVs
+				+ "]";
 	}
+
+	
 
 }

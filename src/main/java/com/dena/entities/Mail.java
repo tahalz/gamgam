@@ -88,8 +88,12 @@ public class Mail implements Serializable {
 		return membre;
 	}
 
+	@Override
 	public String toString() {
-		return String.valueOf(getIdMail());
+		return "Mail [idMail=" + idMail + ", membre=" + membre + ", contenu=" + contenu + ", dateEnvoi=" + dateEnvoi
+				+ ", email=" + email + "]";
 	}
+
+	
 
 }

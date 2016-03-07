@@ -110,8 +110,15 @@ public class CarteVisite implements Serializable {
 		this.themeCartes = themeCartes;
 	}
 
+
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdCarte());
+		return "CarteVisite [idCarte=" + idCarte + ", tel=" + tel + ", siteWeb=" + siteWeb + ", adresse=" + adresse
+				+ ", membre=" + membre + ", themeCartes=" + themeCartes + "]";
 	}
+
+	
 	
 }
