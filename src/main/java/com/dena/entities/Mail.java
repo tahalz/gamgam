@@ -13,6 +13,8 @@ package com.dena.entities;
  * License Type: Evaluation
  */
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,10 +25,17 @@ public class Mail implements Serializable {
 	public Mail() {
 	}
 
+	public Mail( String contenu, Date dateEnvoi, String email) {
+		super();
+		this.contenu = contenu;
+		this.dateEnvoi = dateEnvoi;
+		this.email = email;
+	}
+
 	@Column(name = "idMail", nullable = false, unique = true, length = 10)
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idMail;
+	private long idMail;
 
 	@ManyToOne
 	@JoinColumn(name="CODE_MEMBRE")
@@ -42,13 +51,10 @@ public class Mail implements Serializable {
 	@Column(name = "email", nullable = true, length = 255)
 	private String email;
 
-	public int getIdMail() {
+	public long getIdMail() {
 		return idMail;
 	}
 
-	public int getORMID() {
-		return getIdMail();
-	}
 
 	public void setContenu(String value) {
 		this.contenu = value;
@@ -82,8 +88,12 @@ public class Mail implements Serializable {
 		return membre;
 	}
 
+	@Override
 	public String toString() {
-		return String.valueOf(getIdMail());
+		return "Mail [idMail=" + idMail + ", membre=" + membre + ", contenu=" + contenu + ", dateEnvoi=" + dateEnvoi
+				+ ", email=" + email + "]";
 	}
+
+	
 
 }

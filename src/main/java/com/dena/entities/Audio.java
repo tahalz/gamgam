@@ -27,6 +27,12 @@ public class Audio implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private long idAudio;
 	
+	public Audio(String url, String emplacement) {
+		super();
+		this.url = url;
+		this.emplacement = emplacement;
+	}
+
 	@Column(name="url", nullable=true, length=255)	
 	private String url;
 	
@@ -43,9 +49,7 @@ public class Audio implements Serializable {
 		return idAudio;
 	}
 	
-	public long getORMID() {
-		return getIdAudio();
-	}
+
 	
 	public void setUrl(String value) {
 		this.url = value;
@@ -70,9 +74,15 @@ public class Audio implements Serializable {
 	public Portfolio getPortfolio() {
 		return portfolio;
 	}
-	
+
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdAudio());
+		return "Audio [idAudio=" + idAudio + ", url=" + url + ", emplacement=" + emplacement + ", portfolio="
+				+ portfolio + "]";
 	}
+	
+	
 	
 }

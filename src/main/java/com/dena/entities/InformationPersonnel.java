@@ -28,6 +28,13 @@ public class InformationPersonnel implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idInfoPerso;
 
+	public InformationPersonnel(String presentation, String motCle, String titreCV) {
+		super();
+		this.presentation = presentation;
+		this.motCle = motCle;
+		this.titreCV = titreCV;
+	}
+
 	@Column(name = "presentation", nullable = true, length = 255)
 	private String presentation;
 
@@ -43,10 +50,6 @@ public class InformationPersonnel implements Serializable {
 
 	public long getIdInfoPerso() {
 		return idInfoPerso;
-	}
-
-	public long getORMID() {
-		return getIdInfoPerso();
 	}
 
 	public void setPresentation(String value) {
@@ -81,8 +84,11 @@ public class InformationPersonnel implements Serializable {
 		return langue;
 	}
 
+	@Override
 	public String toString() {
-		return String.valueOf(getIdInfoPerso());
+		return "InformationPersonnel [idInfoPerso=" + idInfoPerso + ", presentation=" + presentation + ", motCle="
+				+ motCle + ", titreCV=" + titreCV + ", langue=" + langue + "]";
 	}
 
+	
 }

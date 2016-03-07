@@ -8,6 +8,7 @@ package com.dena.entities;
  * Modifying its content may cause the program not work, or your work may lost.
  */
 
+import java.io.File;
 /**
  * Licensee: 
  * License Type: Evaluation
@@ -30,11 +31,18 @@ public class Lien implements Serializable {
 	@Column(name="service", nullable=true, length=255)	
 	private String service;
 	
+	public Lien(String service, String url, File logo) {
+		super();
+		this.service = service;
+		this.url = url;
+		this.logo = logo;
+	}
+
 	@Column(name="url", nullable=true, length=255)	
 	private String url;
 	
 	@Column(name="logo", nullable=true, length=10)	
-	private Integer logo;
+	private File logo;
 	
 	@ManyToOne
 	@JoinColumn(name="CODE_LANGUE")
@@ -44,9 +52,7 @@ public class Lien implements Serializable {
 		return idLiens;
 	}
 	
-	public long getORMID() {
-		return getIdLiens();
-	}
+	
 	
 	public void setService(String value) {
 		this.service = value;
@@ -63,16 +69,13 @@ public class Lien implements Serializable {
 	public String getUrl() {
 		return url;
 	}
+
 	
-	public void setLogo(int value) {
-		setLogo(new Integer(value));
-	}
-	
-	public void setLogo(Integer value) {
+	public void setLogo(File value) {
 		this.logo = value;
 	}
 	
-	public Integer getLogo() {
+	public File getLogo() {
 		return logo;
 	}
 	
@@ -83,9 +86,14 @@ public class Lien implements Serializable {
 	public Langue getLangue() {
 		return langue;
 	}
-	
+
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdLiens());
+		return "Lien [idLiens=" + idLiens + ", service=" + service + ", url=" + url + ", logo=" + logo + ", langue="
+				+ langue + "]";
 	}
+	
 	
 }

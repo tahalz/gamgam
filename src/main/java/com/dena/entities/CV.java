@@ -15,8 +15,11 @@ import java.io.File;
  */
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "CV")
@@ -30,6 +33,20 @@ public class CV implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idCV;
+
+
+	public CV(File photo, Date dateNaissance, String ville, String codePostal, String pays, Boolean permis,
+			String situationProfessionnel, String situationFamilial) {
+		super();
+		this.photo = photo;
+		this.dateNaissance = dateNaissance;
+		this.ville = ville;
+		this.codePostal = codePostal;
+		this.pays = pays;
+		this.permis = permis;
+		this.situationProfessionnel = situationProfessionnel;
+		this.situationFamilial = situationFamilial;
+	}
 
 	@Column(name = "photo", nullable = true, length = 10)
 	private File photo;
@@ -61,22 +78,18 @@ public class CV implements Serializable {
 	private String situationFamilial;
 
 	@OneToMany(mappedBy = "cv", fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<Langue> langues;
 
 	@OneToMany(mappedBy = "cv",fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<FichierProfessionel> fichierProfessionel;
 
 	public long getIdCV() {
 		return idCV;
 	}
 
-	public long getORMID() {
-		return getIdCV();
-	}
-
-	public void setPhoto(int value) {
-		setPhoto(new Integer(value));
-	}
+	
 
 
 
@@ -124,9 +137,7 @@ public class CV implements Serializable {
 		return pays;
 	}
 
-	public void setPermis(boolean value) {
-		setPermis(new Boolean(value));
-	}
+
 
 	public void setPermis(Boolean value) {
 		this.permis = value;
@@ -176,8 +187,17 @@ public class CV implements Serializable {
 		this.fichierProfessionel = fichierProfessionel;
 	}
 
+
+
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdCV());
+		return "CV [idCV=" + idCV + ", photo=" + photo + ", dateNaissance=" + dateNaissance + ", ville=" + ville
+				+ ", codePostal=" + codePostal + ", pays=" + pays + ", permis=" + permis + ", situationProfessionnel="
+				+ situationProfessionnel + ", membre=" + membre + ", situationFamilial=" + situationFamilial
+				+ ", langues=" + langues + ", fichierProfessionel=" + fichierProfessionel + "]";
 	}
 
+	
 }

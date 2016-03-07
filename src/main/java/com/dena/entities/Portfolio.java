@@ -17,6 +17,8 @@ import java.util.Collection;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Portfolio")
 public class Portfolio implements Serializable {
@@ -30,6 +32,12 @@ public class Portfolio implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idPortfolio;
 
+	public Portfolio(String titrePortfolio, String description) {
+		super();
+		this.titrePortfolio = titrePortfolio;
+		this.description = description;
+	}
+
 	@Column(name = "titrePortfolio", nullable = true, length = 255)
 	private String titrePortfolio;
 
@@ -41,7 +49,7 @@ public class Portfolio implements Serializable {
 	private Langue langue;
 
 	@OneToMany(mappedBy = "portfolio", fetch=FetchType.LAZY)
-
+	@JsonIgnore
 	private Collection<Video> videos;
 
 	public Collection<Video> getVideos() {
@@ -85,27 +93,26 @@ public class Portfolio implements Serializable {
 	}
 
 	@OneToMany(mappedBy = "portfolio", fetch=FetchType.LAZY)
-
+	@JsonIgnore
 	private Collection<Document> documents;
 
 	@OneToMany(mappedBy = "potfolio",fetch=FetchType.LAZY)
-
+	@JsonIgnore
 	private Collection<Image> images;
 
 	@OneToMany(mappedBy = "portfolio", fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<Audio> audios;
 
 	@OneToMany(mappedBy = "portfolio", fetch=FetchType.LAZY)
-
+	@JsonIgnore
 	private Collection<Diaporama> diaporamas;
 
 	public long getIdPortfolio() {
 		return idPortfolio;
 	}
 
-	public long getORMID() {
-		return getIdPortfolio();
-	}
+
 
 	public void setTitrePortfolio(String value) {
 		this.titrePortfolio = value;
@@ -131,8 +138,13 @@ public class Portfolio implements Serializable {
 		return langue;
 	}
 
+	@Override
 	public String toString() {
-		return String.valueOf(getIdPortfolio());
+		return "Portfolio [idPortfolio=" + idPortfolio + ", titrePortfolio=" + titrePortfolio + ", description="
+				+ description + ", langue=" + langue + ", videos=" + videos + ", documents=" + documents + ", images="
+				+ images + ", audios=" + audios + ", diaporamas=" + diaporamas + "]";
 	}
+
+
 
 }

@@ -27,6 +27,13 @@ public class Competence implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private long idCompetence;
 	
+	public Competence(String typeCompetence, String domaineCompetence, String description) {
+		super();
+		this.typeCompetence = typeCompetence;
+		this.domaineCompetence = domaineCompetence;
+		this.description = description;
+	}
+
 	@Column(name="typeCompetence", nullable=true, length=255)	
 	private String typeCompetence;
 	
@@ -46,9 +53,7 @@ public class Competence implements Serializable {
 		return idCompetence;
 	}
 	
-	public long getORMID() {
-		return getIdCompetence();
-	}
+
 	
 	public void setTypeCompetence(String value) {
 		this.typeCompetence = value;
@@ -81,9 +86,16 @@ public class Competence implements Serializable {
 	public Langue getLangue() {
 		return langue;
 	}
-	
+
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdCompetence());
+		return "Competence [idCompetence=" + idCompetence + ", typeCompetence=" + typeCompetence
+				+ ", domaineCompetence=" + domaineCompetence + ", description=" + description + ", langue=" + langue
+				+ "]";
 	}
+	
+	
 	
 }

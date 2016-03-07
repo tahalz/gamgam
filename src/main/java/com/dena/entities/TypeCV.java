@@ -17,6 +17,8 @@ import java.util.Collection;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "TypeCV")
 public class TypeCV implements Serializable {
@@ -30,6 +32,11 @@ public class TypeCV implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idType;
 
+	public TypeCV(String nomType) {
+		super();
+		this.nomType = nomType;
+	}
+
 	@Column(name = "nomType", nullable = true, length = 255)
 	private String nomType;
 
@@ -38,16 +45,14 @@ public class TypeCV implements Serializable {
 	private Langue langue;
 
 	@OneToMany(mappedBy = "typeCV",fetch=FetchType.LAZY)
-
+	@JsonIgnore
 	private Collection<ThemeCV> themeCVs;
 
 	public long getIdType() {
 		return idType;
 	}
 
-	public long getORMID() {
-		return getIdType();
-	}
+
 
 	public void setNomType(String value) {
 		this.nomType = value;
@@ -73,8 +78,14 @@ public class TypeCV implements Serializable {
 		this.themeCVs = themeCVs;
 	}
 
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdType());
+		return "TypeCV [idType=" + idType + ", nomType=" + nomType + ", langue=" + langue + ", themeCVs=" + themeCVs
+				+ "]";
 	}
+
+	
 
 }

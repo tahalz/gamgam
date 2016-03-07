@@ -13,6 +13,8 @@ package com.dena.entities;
  * License Type: Evaluation
  */
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -34,6 +36,15 @@ public class Formation implements Serializable {
 	@Column(name = "etablissement", nullable = true, length = 255)
 	private String etablissement;
 
+	public Formation(String nomFormation, String etablissement, String description, Date dateDebut, Date dateFin) {
+		super();
+		this.nomFormation = nomFormation;
+		this.etablissement = etablissement;
+		this.description = description;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+	}
+
 	@Column(name = "description", nullable = true, length = 255)
 	private String description;
 
@@ -53,9 +64,6 @@ public class Formation implements Serializable {
 		return idFormation;
 	}
 
-	public long getORMID() {
-		return getIdFormation();
-	}
 
 	public void setNomFormation(String value) {
 		this.nomFormation = value;
@@ -105,8 +113,14 @@ public class Formation implements Serializable {
 		return langue;
 	}
 
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdFormation());
+		return "Formation [idFormation=" + idFormation + ", nomFormation=" + nomFormation + ", etablissement="
+				+ etablissement + ", description=" + description + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin
+				+ ", langue=" + langue + "]";
 	}
+
+	
 
 }

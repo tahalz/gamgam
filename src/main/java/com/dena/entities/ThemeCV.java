@@ -27,6 +27,12 @@ public class ThemeCV implements Serializable {
 	@JoinColumn(name="CODE_TYPECV")
 	private TypeCV typeCV;
 
+	public ThemeCV(long idTheme, String nomTheme) {
+		super();
+		this.idTheme = idTheme;
+		this.nomTheme = nomTheme;
+	}
+
 	@Column(name = "idTheme", nullable = false, unique = true, length = 20)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,9 +45,6 @@ public class ThemeCV implements Serializable {
 		return idTheme;
 	}
 
-	public long getORMID() {
-		return getIdTheme();
-	}
 
 	public void setNomTheme(String value) {
 		this.nomTheme = value;
@@ -59,8 +62,10 @@ public class ThemeCV implements Serializable {
 		return typeCV;
 	}
 
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdTheme());
+		return "ThemeCV [typeCV=" + typeCV + ", idTheme=" + idTheme + ", nomTheme=" + nomTheme + "]";
 	}
 
 }

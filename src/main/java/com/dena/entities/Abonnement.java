@@ -16,12 +16,19 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="Abonnement")
 @Entity
 public class Abonnement implements Serializable {
 
 
 
+
+	public Abonnement(Integer typeAbonnement) {
+		super();
+		this.typeAbonnement = typeAbonnement;
+	}
 
 	public Abonnement() {
 	}
@@ -38,8 +45,8 @@ public class Abonnement implements Serializable {
 	@PrimaryKeyJoinColumn
 	private Membre membre;
 	
-	@OneToMany(mappedBy="abonnement", fetch=FetchType.LAZY)	
-	
+	@OneToMany(mappedBy="abonnement", fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<Paiement> paiements ;
 	
 
@@ -48,13 +55,7 @@ public class Abonnement implements Serializable {
 		return idAbonnement;
 	}
 	
-	public long getORMID() {
-		return getIdAbonnement();
-	}
-	
-	public void setTypeAbonnement(int value) {
-		setTypeAbonnement(new Integer(value));
-	}
+
 	
 	public void setTypeAbonnement(Integer value) {
 		this.typeAbonnement = value;
@@ -83,8 +84,11 @@ public class Abonnement implements Serializable {
 		this.paiements = paiements;
 	}
 
+	@Override
 	public String toString() {
-		return String.valueOf(getIdAbonnement());
+		return "Abonnement [idAbonnement=" + idAbonnement + ", typeAbonnement=" + typeAbonnement + ", membre=" + membre
+				+ ", paiements=" + paiements + "]";
 	}
+
 	
 }

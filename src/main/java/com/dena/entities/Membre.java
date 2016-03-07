@@ -16,6 +16,8 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="Membre")
 public class Membre implements Serializable {
@@ -44,28 +46,45 @@ public class Membre implements Serializable {
 	@Column(name="civilite", nullable=true, length=255)	
 	private String civilite;
 	
+	public Membre(String nomMembre, String prenomMembre, String password, String email, String civilite, Boolean sexe) {
+		super();
+		this.nomMembre = nomMembre;
+		this.prenomMembre = prenomMembre;
+		this.password = password;
+		this.email = email;
+		this.civilite = civilite;
+		this.sexe = sexe;
+	}
+
 	@Column(name="sexe", nullable=true, length=1)	
 	private Boolean sexe;
 	
 	@OneToOne(mappedBy="membre", fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private Role role;
 	
 	@OneToOne(mappedBy="membre",  fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private Abonnement abonnement;
 	
 	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private Collection<CV> cvs ;
 	
-	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)		
+	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private Collection<LettreMotivation> lettreMotivations;
 	
 	@OneToOne(mappedBy="membre",  fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private CarteVisite carteVisite;
 	
 	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private Collection<Mail> mails;
 	
-	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)	
+	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<Notification> notifications ;
 	
 	public Collection<CV> getCvs() {
@@ -104,9 +123,7 @@ public class Membre implements Serializable {
 		return idMembre;
 	}
 	
-	public long getORMID() {
-		return getIdMembre();
-	}
+
 	
 	public void setNomMembre(String value) {
 		this.nomMembre = value;
@@ -148,14 +165,12 @@ public class Membre implements Serializable {
 		return civilite;
 	}
 	
-	public void setSexe(boolean value) {
-		setSexe(new Boolean(value));
-	}
+
 	
-	public void setSexe(Boolean value) {
-		this.sexe = value;
+	public void setSexe(Boolean sexe) {
+		this.sexe = sexe;
 	}
-	
+
 	public Boolean getSexe() {
 		return sexe;
 	}
@@ -186,11 +201,18 @@ public class Membre implements Serializable {
 	public CarteVisite getCarteVisite() {
 		return carteVisite;
 	}
-	
-	
-	
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdMembre());
+		return "Membre [idMembre=" + idMembre + ", nomMembre=" + nomMembre + ", prenomMembre=" + prenomMembre
+				+ ", password=" + password + ", email=" + email + ", civilite=" + civilite + ", sexe=" + sexe
+				+ ", role=" + role + ", abonnement=" + abonnement + ", cvs=" + cvs + ", lettreMotivations="
+				+ lettreMotivations + ", carteVisite=" + carteVisite + ", mails=" + mails + ", notifications="
+				+ notifications + "]";
 	}
+	
+	
+	
+	
 	
 }

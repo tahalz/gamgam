@@ -13,7 +13,15 @@ package com.dena.entities;
  * License Type: Evaluation
  */
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 @Entity
 @Table(name="ThemeCarte")
 public class ThemeCarte implements Serializable {
@@ -22,9 +30,17 @@ public class ThemeCarte implements Serializable {
 	public ThemeCarte() {
 	}
 	
-	@Column(name="TypeCVidType", nullable=false, length=19)	
-	private long typeCVidType;
 	
+	
+
+	public ThemeCarte(String nomThemeCarte) {
+		super();
+		this.nomThemeCarte = nomThemeCarte;
+	}
+
+
+
+
 	@ManyToOne	
 	@JoinColumn(name="CODE_CATEVISITE")	
 	private CarteVisite carteVisite;
@@ -33,23 +49,28 @@ public class ThemeCarte implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private long idThemeCarte;
+	@Column(name="nomThemeCarte",nullable = true, length = 255)	
+	private String nomThemeCarte;
 	
-	public void setTypeCVidType(long value) {
-		this.typeCVidType = value;
+
+	
+	public String getNomThemeCarte() {
+		return nomThemeCarte;
 	}
-	
-	public long getTypeCVidType() {
-		return typeCVidType;
+
+
+
+	public void setNomThemeCarte(String nomThemeCarte) {
+		this.nomThemeCarte = nomThemeCarte;
 	}
-	
+
+
+
 	public long getIdThemeCarte() {
 		return idThemeCarte;
 	}
 	
-	public long getORMID() {
-		return getIdThemeCarte();
-	}
-	
+
 	public void setCarteVisite(CarteVisite value) {
 		this.carteVisite = value;
 	}
@@ -57,9 +78,16 @@ public class ThemeCarte implements Serializable {
 	public CarteVisite getCarteVisite() {
 		return carteVisite;
 	}
-	
+
+
+
+
+	@Override
 	public String toString() {
-		return String.valueOf(getIdThemeCarte());
+		return "ThemeCarte [carteVisite=" + carteVisite + ", idThemeCarte=" + idThemeCarte + ", nomThemeCarte="
+				+ nomThemeCarte + "]";
 	}
+	
+	
 	
 }

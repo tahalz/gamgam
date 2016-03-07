@@ -13,6 +13,8 @@ package com.dena.entities;
  * License Type: Evaluation
  */
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 @Entity
 @Table(name="Paiement")
@@ -27,6 +29,14 @@ public class Paiement implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private long idPaiment;
 	
+	public Paiement(Integer numeroCarte, Date expiration, String code, Date datePaiement) {
+		super();
+		this.numeroCarte = numeroCarte;
+		this.expiration = expiration;
+		this.code = code;
+		this.datePaiement = datePaiement;
+	}
+
 	@Column(name="numeroCarte", nullable=true, length=10)	
 	private Integer numeroCarte;
 	
@@ -47,14 +57,8 @@ public class Paiement implements Serializable {
 	public long getIdPaiment() {
 		return idPaiment;
 	}
-	
-	public long getORMID() {
-		return getIdPaiment();
-	}
-	
-	public void setNumeroCarte(int value) {
-		setNumeroCarte(new Integer(value));
-	}
+
+
 	
 	public void setNumeroCarte(Integer value) {
 		this.numeroCarte = value;
@@ -90,9 +94,7 @@ public class Paiement implements Serializable {
 		this.abonnement = abonnement;
 	}
 
-	public String toString() {
-		return String.valueOf(getIdPaiment());
-	}
+
 
 	public java.util.Date getDatePaiement() {
 		return datePaiement;
@@ -101,5 +103,14 @@ public class Paiement implements Serializable {
 	public void setDatePaiement(java.util.Date datePaiement) {
 		this.datePaiement = datePaiement;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Paiement [idPaiment=" + idPaiment + ", numeroCarte=" + numeroCarte + ", expiration=" + expiration
+				+ ", code=" + code + ", abonnement=" + abonnement + ", datePaiement=" + datePaiement + "]";
+	}
+	
 	
 }
