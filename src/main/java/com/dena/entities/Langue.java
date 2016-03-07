@@ -17,6 +17,8 @@ import java.util.Collection;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Langue")
 public class Langue implements Serializable {
@@ -43,25 +45,31 @@ public class Langue implements Serializable {
 	private CV cv;
 
 	@OneToMany(mappedBy = "langue",fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<Competence> competences;
 
 	@OneToMany(mappedBy = "langue",fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<Formation> formations;
 
 	@OneToMany(mappedBy = "langue", fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<Loisir> loisirs;
 
 	@OneToMany(mappedBy = "langue", fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<Experience> experiences;
 
 	@OneToMany(mappedBy = "langue", fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<Lien> liens;
 
 	@OneToMany(mappedBy = "langue", fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<TypeCV> typeCVs;
 
 	@OneToMany(mappedBy = "langue", fetch=FetchType.LAZY)
-
+    @JsonIgnore
 	private Collection<Portfolio> portfolios;
 
 	@OneToOne(mappedBy = "langue",  fetch = FetchType.LAZY)

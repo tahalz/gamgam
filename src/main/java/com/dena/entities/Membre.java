@@ -66,9 +66,11 @@ public class Membre implements Serializable {
 	private Abonnement abonnement;
 	
 	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private Collection<CV> cvs ;
 	
 	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)		
+	@JsonIgnore
 	private Collection<LettreMotivation> lettreMotivations;
 	
 	@OneToOne(mappedBy="membre",  fetch=FetchType.LAZY)	
@@ -79,6 +81,7 @@ public class Membre implements Serializable {
 	private Collection<Mail> mails;
 	
 	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)	
+	@JsonIgnore
 	private Collection<Notification> notifications ;
 	
 	public Collection<CV> getCvs() {

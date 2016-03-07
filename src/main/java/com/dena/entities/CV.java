@@ -19,6 +19,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "CV")
 public class CV implements Serializable {
@@ -76,9 +78,11 @@ public class CV implements Serializable {
 	private String situationFamilial;
 
 	@OneToMany(mappedBy = "cv", fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<Langue> langues;
 
 	@OneToMany(mappedBy = "cv",fetch=FetchType.LAZY)
+	@JsonIgnore
 	private Collection<FichierProfessionel> fichierProfessionel;
 
 	public long getIdCV() {

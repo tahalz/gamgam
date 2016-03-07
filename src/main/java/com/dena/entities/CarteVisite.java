@@ -17,6 +17,8 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="CarteVisite")
 public class CarteVisite implements Serializable {
@@ -53,7 +55,7 @@ public class CarteVisite implements Serializable {
 	private Membre membre;
 	
 	@OneToMany(mappedBy="carteVisite", fetch=FetchType.LAZY)	
-	
+	@JsonIgnore
 	private Collection<ThemeCarte> themeCartes;
 	
 	
