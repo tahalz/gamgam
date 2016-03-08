@@ -31,19 +31,7 @@ public class CompetenceController {
 			this.competenceService = competenceService;
 		}
 
-		@RequestMapping(
-				method = {RequestMethod.GET,RequestMethod.POST}, 
-				produces = { "application/json" }
-				)
-		public List<Competence> findAll(HttpServletResponse response) throws IOException{
-			List<Competence> competence = null;
-			
-				competence = competenceService.findAll();
-			
-		
-			return competence;
-			
-		}
+
 
 	}
 
