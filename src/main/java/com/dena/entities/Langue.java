@@ -69,7 +69,8 @@ public class Langue implements Serializable {
 	private Collection<TypeCV> typeCVs;
 
 	@OneToMany(mappedBy = "langue", fetch=FetchType.LAZY)
-	@JsonIgnore
+
+    @JsonIgnore
 	private Collection<Portfolio> portfolios;
 
 	@OneToOne(mappedBy = "langue",  fetch = FetchType.LAZY)

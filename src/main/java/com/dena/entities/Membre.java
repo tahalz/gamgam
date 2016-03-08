@@ -71,6 +71,8 @@ public class Membre implements Serializable {
 	@JsonIgnore
 	private Collection<CV> cvs ;
 	
+	
+
 	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)	
 	@JsonIgnore
 	private Collection<LettreMotivation> lettreMotivations;
@@ -83,7 +85,8 @@ public class Membre implements Serializable {
 	@JsonIgnore
 	private Collection<Mail> mails;
 	
-	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="membre", fetch=FetchType.LAZY)	
+
 	@JsonIgnore
 	private Collection<Notification> notifications ;
 	
