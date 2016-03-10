@@ -45,7 +45,7 @@ public class TypeCV implements Serializable {
 	private Langue langue;
 
 	@OneToMany(mappedBy = "typeCV",fetch=FetchType.LAZY)
-	@JsonIgnore
+    @JsonIgnore
 	private Collection<ThemeCV> themeCVs;
 
 	public long getIdType() {

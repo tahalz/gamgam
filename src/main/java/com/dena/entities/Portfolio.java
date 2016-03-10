@@ -49,7 +49,10 @@ public class Portfolio implements Serializable {
 	private Langue langue;
 
 	@OneToMany(mappedBy = "portfolio", fetch=FetchType.LAZY)
+
+
 	@JsonIgnore
+
 	private Collection<Video> videos;
 
 	public Collection<Video> getVideos() {
@@ -93,8 +96,9 @@ public class Portfolio implements Serializable {
 	}
 
 	@OneToMany(mappedBy = "portfolio", fetch=FetchType.LAZY)
-	@JsonIgnore
+    @JsonIgnore
 	private Collection<Document> documents;
+
 
 	@OneToMany(mappedBy = "portfolio",fetch=FetchType.LAZY)
 	@JsonIgnore
@@ -105,7 +109,8 @@ public class Portfolio implements Serializable {
 	private Collection<Audio> audios;
 
 	@OneToMany(mappedBy = "portfolio", fetch=FetchType.LAZY)
-	@JsonIgnore
+    @JsonIgnore
+
 	private Collection<Diaporama> diaporamas;
 
 	public long getIdPortfolio() {

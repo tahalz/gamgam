@@ -17,6 +17,9 @@ import java.util.Collection;
 
 import javax.persistence.*;
 
+import org.junit.Ignore;
+
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="Abonnement")
 @Entity
@@ -45,7 +48,10 @@ public class Abonnement implements Serializable {
 	@PrimaryKeyJoinColumn
 	private Membre membre;
 	
+
+
 	@OneToMany(mappedBy="abonnement", fetch=FetchType.LAZY)
+
 	@JsonIgnore
 	private Collection<Paiement> paiements ;
 	
