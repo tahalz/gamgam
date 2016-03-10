@@ -3,6 +3,7 @@ package com.dena.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +24,12 @@ public class AbonnementController {
 	public List<Abonnement> findByTypeAbonnement(@PathVariable Integer typeabonnement) {
 		return abonnementService.findByTypeAbonnement(typeabonnement);
 	}
+	@CrossOrigin(origins = "http://localhost:63342")
 	@RequestMapping(method=RequestMethod.POST)
 	public Abonnement save(@RequestBody Abonnement abonnement) {
 		return abonnementService.save(abonnement);
 	}
+	@CrossOrigin(origins = "http://localhost:63342")
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Abonnement> findAll() {
 		return abonnementService.findAll();

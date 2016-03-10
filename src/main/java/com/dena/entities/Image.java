@@ -42,7 +42,7 @@ public class Image implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name="CODE_POTFOLIO")
-	private Portfolio potfolio;
+	private Portfolio portfolio;
 
 	public long getIdImage() {
 		return idImage;
@@ -67,16 +67,16 @@ public class Image implements Serializable {
 	}
 
 	public void setPotfolio(Portfolio value) {
-		this.potfolio = value;
+		this.portfolio = value;
 	}
 
 	public Portfolio getPotfolio() {
-		return potfolio;
+		return portfolio;
 	}
 
 	@Override
 	public String toString() {
-		return "Image [idImage=" + idImage + ", url=" + url + ", emplacement=" + emplacement + ", potfolio=" + potfolio
+		return "Image [idImage=" + idImage + ", url=" + url + ", emplacement=" + emplacement + ", potfolio=" + portfolio
 				+ "]";
 	}
 

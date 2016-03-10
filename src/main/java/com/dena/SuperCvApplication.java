@@ -8,5 +8,6 @@ public class SuperCvApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SuperCvApplication.class, args);
+		
 	}
 }

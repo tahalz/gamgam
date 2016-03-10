@@ -15,9 +15,21 @@ package com.dena.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name="Membre")
 public class Membre implements Serializable {
@@ -30,7 +42,24 @@ public class Membre implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private long idMembre;
-	
+	@Column(name="username", nullable=true, length=255)	
+	private String userName;
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public Boolean getActived() {
+		return actived;
+	}
+
+	public void setActived(Boolean actived) {
+		this.actived = actived;
+	}
+
 	@Column(name="nomMembre", nullable=true, length=255)	
 	private String nomMembre;
 	
@@ -45,22 +74,44 @@ public class Membre implements Serializable {
 	
 	@Column(name="civilite", nullable=true, length=255)	
 	private String civilite;
+	@Column(name="actived",columnDefinition="tinyint(1) default 1")
+	private Boolean actived;
 	
-	public Membre(String nomMembre, String prenomMembre, String password, String email, String civilite, Boolean sexe) {
+	public boolean booleanValue() {
+		return actived.booleanValue();
+	}
+
+	public int hashCode() {
+		return actived.hashCode();
+	}
+
+	public boolean equals(Object obj) {
+		return actived.equals(obj);
+	}
+
+	public int compareTo(Boolean b) {
+		return actived.compareTo(b);
+	}
+
+	public Membre(String userName,String nomMembre, String prenomMembre, String password, String email, String civilite, Boolean sexe,Boolean actived) {
 		super();
+		this.userName=userName;
 		this.nomMembre = nomMembre;
 		this.prenomMembre = prenomMembre;
 		this.password = password;
 		this.email = email;
 		this.civilite = civilite;
 		this.sexe = sexe;
+		this.actived=actived;
 	}
 
 	@Column(name="sexe", nullable=true, length=1)	
 	private Boolean sexe;
 	
-	@OneToOne(mappedBy="membre", fetch=FetchType.LAZY)	
-	@JsonIgnore
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "Role")
+	@JsonBackReference
 	private Role role;
 	
 	@OneToOne(mappedBy="membre",  fetch=FetchType.LAZY)	
@@ -204,12 +255,15 @@ public class Membre implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Membre [idMembre=" + idMembre + ", nomMembre=" + nomMembre + ", prenomMembre=" + prenomMembre
-				+ ", password=" + password + ", email=" + email + ", civilite=" + civilite + ", sexe=" + sexe
-				+ ", role=" + role + ", abonnement=" + abonnement + ", cvs=" + cvs + ", lettreMotivations="
-				+ lettreMotivations + ", carteVisite=" + carteVisite + ", mails=" + mails + ", notifications="
-				+ notifications + "]";
+		return "Membre [idMembre=" + idMembre + ", userName=" + userName + ", nomMembre=" + nomMembre
+				+ ", prenomMembre=" + prenomMembre + ", password=" + password + ", email=" + email + ", civilite="
+				+ civilite + ", actived=" + actived + ", sexe=" + sexe + ", role=" + role + ", abonnement=" + abonnement
+				+ ", cvs=" + cvs + ", lettreMotivations=" + lettreMotivations + ", carteVisite=" + carteVisite
+				+ ", mails=" + mails + ", notifications=" + notifications + "]";
 	}
+
+	
+
 	
 	
 	

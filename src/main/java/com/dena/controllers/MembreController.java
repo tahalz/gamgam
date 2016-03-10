@@ -1,8 +1,15 @@
 package com.dena.controllers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +44,7 @@ public class  MembreController {
 	public Membre save(@RequestBody Membre membre) {
 		return membreService.save(membre);
 	}
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET,headers="Accept=application/json")
 	public List<Membre> findAll() {
 		return membreService.findAll();
 	}
@@ -53,7 +60,21 @@ public class  MembreController {
 	public Membre update(@ PathVariable long id,@RequestBody Membre membre) {
 		return membreService.update(id,membre);
 	}
-
+	 //retrouver le username et les roles du member loged
+	@RequestMapping(value="/getLogedUser")
+	public Map<String, Object> getLogedUser(HttpSession httpSession){
+		SecurityContext securityContext=(SecurityContext) httpSession.getAttribute("SPRING_SECURITY_CONTEXT");
+		String useName=securityContext.getAuthentication().getName();
+		List<String> roles=new ArrayList<>();
+		for(GrantedAuthority grantedAuthority :securityContext.getAuthentication().getAuthorities())
+			roles.add(grantedAuthority.getAuthority());
+		Map<String, Object> params=new HashMap<>();
+		params.put("userName", useName);
+		params.put("roles", roles);
+		return params;
+		
+	}
+	
 	
 
 }

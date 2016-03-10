@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +30,12 @@ public class MailController {
 	public List<Mail> findByContenu(@PathVariable String contenu) {
 		return mailService.findByContenu(contenu);
 	}
+	@CrossOrigin(origins = "http://localhost:63342")
 	@RequestMapping(method=RequestMethod.POST)
 	public Mail save(@RequestBody Mail mail) {
 		return mailService.save(mail);
 	}
+	 @CrossOrigin(origins = "http://localhost:63342")
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Mail> findAll() {
 		return mailService.findAll();

@@ -96,7 +96,7 @@ public class Portfolio implements Serializable {
 	@JsonIgnore
 	private Collection<Document> documents;
 
-	@OneToMany(mappedBy = "potfolio",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "portfolio",fetch=FetchType.LAZY)
 	@JsonIgnore
 	private Collection<Image> images;
 
