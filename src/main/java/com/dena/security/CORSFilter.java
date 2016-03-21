@@ -12,7 +12,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+//ici on definit les clients qui auront la permission d'acceder a mon api ainsi que les differentes regles (contrat)
 public class CORSFilter implements Filter {
 
 	// This is to be replaced with a list of domains allowed to access the server
@@ -42,7 +42,7 @@ public class CORSFilter implements Filter {
 			// Access-Control-Allow-Methods
 			response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
 
-			// Access-Control-Allow-Headers
+			// Access-Control-Allow-Headers (list des headers que le navigateur peur utiliser)
 			response.setHeader("Access-Control-Allow-Headers",
 				"Origin, X-Requested-With, Content-Type, Accept, " + CSRF.REQUEST_HEADER_NAME);
 		}

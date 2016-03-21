@@ -11,6 +11,7 @@ import java.io.IOException;
 /**
  * An authentication success handler implementation adapted to a REST approach.
  */
+//répondre avec un statut HTTP 200 que la connexion a réussi
 public class RESTAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
 	@Override
@@ -19,4 +20,5 @@ public class RESTAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
 
 		clearAuthenticationAttributes(request);
 	}
+	
 }

@@ -82,5 +82,17 @@ public class MembreService implements IMembreService{
 		// TODO Auto-generated method stub
 		return membreRepository.findByCivilite(civilite);
 	}
+
+	@Override
+	public List<Membre> findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return membreRepository.findByEmail(email);
+	}
+
+	@Override
+	public List<Membre> findByResetPasswordToken(String resetpasswordtoken) {
+		// TODO Auto-generated method stub
+		return membreRepository.findByResetPasswordToken(resetpasswordtoken);
+	}
 	
 }

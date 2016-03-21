@@ -11,6 +11,7 @@ import java.io.IOException;
 /**
  * An authentication entry point implementation adapted to a REST approach.
  */
+//si le client accède à une ressource mais non authentifié, nous répondons avec un non autorisé 401 statut
 public class RESTAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
 	@Override
@@ -18,5 +19,8 @@ public class RESTAuthenticationEntryPoint implements AuthenticationEntryPoint {
 	                     AuthenticationException authException) throws IOException, ServletException {
 
 			response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+
+		
+		
 	}
 }

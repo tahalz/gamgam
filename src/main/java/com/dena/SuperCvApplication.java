@@ -9,6 +9,7 @@ import com.dena.security.ApplicationSecurity;
 
 @SpringBootApplication
 public class SuperCvApplication {
+	//pour configurer Spring Security
 	@Bean
 	public WebSecurityConfigurerAdapter webSecurityConfigurerAdapter() {
 		return new ApplicationSecurity();

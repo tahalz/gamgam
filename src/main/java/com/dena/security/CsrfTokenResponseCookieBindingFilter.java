@@ -9,7 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+//Nous mettons en œuvre un filtre qui fournit le jeton CSRF comme un cookie:
 public class CsrfTokenResponseCookieBindingFilter extends OncePerRequestFilter {
 
 	protected static final String REQUEST_ATTRIBUTE_NAME = "_csrf";

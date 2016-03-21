@@ -5,11 +5,16 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -35,22 +40,18 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 	private LogoutSuccessHandler logoutSuccessHandler;
 
 	@Autowired
-	public void globalConfig(AuthenticationManagerBuilder auth,DataSource dataSource ) throws Exception{
-		
-		auth
-			.jdbcAuthentication()
-				.dataSource(dataSource)
-					.usersByUsernameQuery("select username as principal,password as credentials,true from membre where username=?")
-						.authoritiesByUsernameQuery("select username as principale ,role as role from membre where username=?");
-		
+	// authentification en utilisant une base de donnée
+	public void globalConfig(AuthenticationManagerBuilder auth, UserDetailsService userDetailsService,
+			PasswordEncoder passwordEncoder) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+
 	}
 
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.antMatchers(HttpMethod.OPTIONS, "/*/**").permitAll()
-			.antMatchers("/login", "/rest/open/**").permitAll()
-			.antMatchers("/logout", "/rest/**").authenticated();
+		http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/*/**").permitAll() //
+				.antMatchers("/login", "/rest/open/**").permitAll().antMatchers("/logout", "/rest/**").authenticated();
 
 		// Handlers and entry points
 		http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
@@ -60,25 +61,25 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 		// Logout
 		http.logout().logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler);
 
-		// CORS
+		// ajouter le filtre CORS
 		http.addFilterBefore(corsFilter, ChannelProcessingFilter.class);
 
-		// CSRF
+		// configuration du jeton CSRF
 		http.csrf().requireCsrfProtectionMatcher(
-			new AndRequestMatcher(
-				// Apply CSRF protection to all paths that do NOT match the ones below
+				new AndRequestMatcher(
+					// Apply CSRF protection to all paths that do NOT match the ones below
 
-				// We disable CSRF at login/logout, but only for OPTIONS methods
-					new NegatedRequestMatcher(new AntPathRequestMatcher("/login*/**", HttpMethod.OPTIONS.toString())),
-					new NegatedRequestMatcher(new AntPathRequestMatcher("/logout*/**", HttpMethod.OPTIONS.toString())),
+					// We disable CSRF at login/logout, but only for OPTIONS methods
+						new NegatedRequestMatcher(new AntPathRequestMatcher("/login*/**", HttpMethod.OPTIONS.toString())),
+						new NegatedRequestMatcher(new AntPathRequestMatcher("/logout*/**", HttpMethod.OPTIONS.toString())),
 
-					new NegatedRequestMatcher(new AntPathRequestMatcher("/rest*/**", HttpMethod.GET.toString())),
-					new NegatedRequestMatcher(new AntPathRequestMatcher("/rest*/**", HttpMethod.HEAD.toString())),
-					new NegatedRequestMatcher(new AntPathRequestMatcher("/rest*/**", HttpMethod.OPTIONS.toString())),
-					new NegatedRequestMatcher(new AntPathRequestMatcher("/rest*/**", HttpMethod.TRACE.toString())),
-					new NegatedRequestMatcher(new AntPathRequestMatcher("/rest/open*/**"))
-			)
-		);
-		http.addFilterAfter(new CsrfTokenResponseCookieBindingFilter(), CsrfFilter.class); // CSRF tokens handling
+						new NegatedRequestMatcher(new AntPathRequestMatcher("/send-mail/**", HttpMethod.GET.toString())),
+						new NegatedRequestMatcher(new AntPathRequestMatcher("/resetpassword/**", HttpMethod.GET.toString())),
+						new NegatedRequestMatcher(new AntPathRequestMatcher("/changepassword/**", HttpMethod.GET.toString()))
+						
+						
+				)
+			);
+			http.addFilterAfter(new CsrfTokenResponseCookieBindingFilter(), CsrfFilter.class); // CSRF tokens handling
 	}
 }

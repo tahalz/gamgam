@@ -12,4 +12,7 @@ public interface IMembreService {
 	public Membre update(long id,Membre membre);
 	public List<Membre> findBySexe(Boolean sexe);
 	public List<Membre> findByCivilite(String civilite);
+	public List<Membre> findByEmail(String email);
+	public List<Membre> findByResetPasswordToken(String resetpasswordtoken);
+
 }

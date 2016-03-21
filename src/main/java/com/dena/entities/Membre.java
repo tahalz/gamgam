@@ -14,6 +14,7 @@ package com.dena.entities;
  */
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +30,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name="Membre")
 public class Membre implements Serializable {
@@ -76,7 +76,27 @@ public class Membre implements Serializable {
 	private String civilite;
 	@Column(name="actived",columnDefinition="tinyint(1) default 1")
 	private Boolean actived;
+	@Column(name="resetPasswordToken", nullable=true, length=255)	
+	  private String resetPasswordToken;
+	@Column(name="resetPasswordExpires", nullable=true, length=255)	
+	  private Date resetPasswordExpires;
 	
+	public String getResetPasswordToken() {
+		return resetPasswordToken;
+	}
+
+	public void setResetPasswordToken(String resetPasswordToken) {
+		this.resetPasswordToken = resetPasswordToken;
+	}
+
+	public Date getResetPasswordExpires() {
+		return resetPasswordExpires;
+	}
+
+	public void setResetPasswordExpires(Date resetPasswordExpires) {
+		this.resetPasswordExpires = resetPasswordExpires;
+	}
+
 	public boolean booleanValue() {
 		return actived.booleanValue();
 	}
@@ -258,12 +278,16 @@ public class Membre implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Membre [idMembre=" + idMembre + ", userName=" + userName + ", nomMembre=" + nomMembre
-				+ ", prenomMembre=" + prenomMembre + ", password=" + password + ", email=" + email + ", civilite="
-				+ civilite + ", actived=" + actived + ", sexe=" + sexe + ", role=" + role + ", abonnement=" + abonnement
-				+ ", cvs=" + cvs + ", lettreMotivations=" + lettreMotivations + ", carteVisite=" + carteVisite
-				+ ", mails=" + mails + ", notifications=" + notifications + "]";
+		return "Membre [userName=" + userName + ", nomMembre=" + nomMembre + ", prenomMembre=" + prenomMembre
+				+ ", password=" + password + ", email=" + email + ", civilite=" + civilite + ", actived=" + actived
+				+ ", resetPasswordToken=" + resetPasswordToken + ", resetPasswordExpires=" + resetPasswordExpires
+				+ ", sexe=" + sexe + ", role=" + role + ", abonnement=" + abonnement + ", cvs=" + cvs
+				+ ", lettreMotivations=" + lettreMotivations + ", carteVisite=" + carteVisite + ", mails=" + mails
+				+ ", notifications=" + notifications + "]";
 	}
+
+	
+
 
 	
 
