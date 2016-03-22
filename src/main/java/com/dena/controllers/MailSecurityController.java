@@ -46,7 +46,8 @@ public class MailSecurityController {
 	      membreService.save(membre);
 	      String text = "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n"
 	    		  + "Please click on the following link, or paste into your browser to complete the reset password process :\n\n"
-	    		  +"localhost:63342/angulr_2.0.1/src/index.html#/resetpassword/"+secureToken
+                  +"<a href=\"http://localhost:63342/angulr_2.0.1/src/index.html#/resetpassword/"+secureToken+"\">\n" +
+                  "This is a link</a>\n" 
 	    		  + "\n\n If you did not request this, please ignore this email and your password will remain unchanged.";
 			smtpMailSender.send(email, "Test mail from Spring", text);
 

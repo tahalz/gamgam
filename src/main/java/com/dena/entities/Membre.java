@@ -74,7 +74,7 @@ public class Membre implements Serializable {
 	
 	@Column(name="civilite", nullable=true, length=255)	
 	private String civilite;
-	@Column(name="actived",columnDefinition="tinyint(1) default 1")
+	@Column(name="actived")
 	private Boolean actived;
 	@Column(name="resetPasswordToken", nullable=true, length=255)	
 	  private String resetPasswordToken;
