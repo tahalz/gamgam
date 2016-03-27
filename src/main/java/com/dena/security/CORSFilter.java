@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CORSFilter implements Filter {
 
 	// This is to be replaced with a list of domains allowed to access the server
-	private final List<String> allowedOrigins = Arrays.asList("http://localhost:63342");
+	private final List<String> allowedOrigins = Arrays.asList("http://localhost");
 
 	public void destroy() {
 	}

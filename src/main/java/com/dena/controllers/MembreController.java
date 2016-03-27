@@ -74,6 +74,11 @@ public class  MembreController {
 		return params;
 		
 	}
+	@RequestMapping(value="/Signin",method=RequestMethod.POST)
+	public String Inscription()
+	{
+		return "ok" ;
+	}
 	
 	
 
